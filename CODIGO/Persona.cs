@@ -13,9 +13,9 @@ namespace TP_4
         public string domicilio { get; set; }
         public string telefono { get; set; }
         public string email { get; set; }
-        public string actividadQueRealiza { get; set; }
+        public Actividad actividadQueRealiza { get; set; }
 
-        public Persona(string dni, string nombreApellido, string domicilio,string telefono,string email,string actividadQueRealiza)
+        public Persona(string dni, string nombreApellido, string domicilio,string telefono,string email,Actividad actividadQueRealiza)
         {
             this.dni = dni;
             this.nombreApellido = nombreApellido;

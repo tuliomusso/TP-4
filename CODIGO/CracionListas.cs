@@ -11,7 +11,7 @@ namespace TP_4
 
        public static List<Persona> listaPersonas = new List<Persona>();
 
-       public static List<string> listaActividades = new List<string>();
+       public static List<Actividad> listaActividades = new List<Actividad>();
 
        public static List<Persona>  personasAutorizadas = new List<Persona>();
     }

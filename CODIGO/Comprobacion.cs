@@ -15,10 +15,10 @@ namespace TP_4
             foreach (var a in CreacionListas.listaPersonas)
             {
                 int bandera = 0;
-                string acta = a.actividadQueRealiza;
+                Actividad acta = a.actividadQueRealiza;
                 foreach (var b in CreacionListas.listaActividades)
                 {
-                    string actb = b;
+                    Actividad actb = b;
                     if (acta == actb)
                     {
                         bandera = 1;
@@ -53,7 +53,7 @@ namespace TP_4
             {
                 Console.WriteLine($"\n---LA PERSONA EXISTE Y ESTA EN LA PERSONAS AUTORIZADAS POR LO QUE PUEDE INGRESAR AL AREA---");
             }
-            else Console.WriteLine("\n---LA PERSONA NO EXISTE POR LO QUE NO PUEDE INGRESAR AL AREA--- ");
+            else Console.WriteLine("\n---LA PERSONA NO EXISTE O NO ESTA EN LAS PERSONAS AUTORIZADAS POR LO QUE NO PUEDE INGRESAR AL AREA--- ");
         }
     }
 }
