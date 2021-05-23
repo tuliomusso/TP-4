@@ -14,8 +14,9 @@ namespace TP_4
         public string telefono { get; set; }
         public string email { get; set; }
         public Actividad actividadQueRealiza { get; set; }
+        public DateTime fechaVencimientoPermiso { get; set; }
 
-        public Persona(string dni, string nombreApellido, string domicilio,string telefono,string email,Actividad actividadQueRealiza)
+        public Persona(string dni, string nombreApellido, string domicilio,string telefono,string email,Actividad actividadQueRealiza, DateTime fechaVencimientoPermiso)
         {
             this.dni = dni;
             this.nombreApellido = nombreApellido;
@@ -23,6 +24,7 @@ namespace TP_4
             this.telefono = telefono;
             this.email = email;
             this.actividadQueRealiza = actividadQueRealiza;
+            this.fechaVencimientoPermiso = fechaVencimientoPermiso;
         }
     }
 }

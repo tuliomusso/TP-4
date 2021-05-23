@@ -38,6 +38,7 @@ namespace TP_4
         {
             string numDNI;
             int ban = 0;
+            int ban2 = 0;
 
             Console.WriteLine("\nIngrese el numero de DNI Para comprobar si la persona existe:");
             numDNI = Console.ReadLine();
@@ -47,13 +48,24 @@ namespace TP_4
                 if (e.dni==numDNI)
                 {
                     ban = 1;
+                    if (DateTime.Now <= e.fechaVencimientoPermiso)
+                    {
+                        ban2 = 1;
+                    }
+                    else ban2 = 0;
                 }
+
             }
-            if (ban==1)
+            if (ban==1 && ban2==1)
             {
-                Console.WriteLine($"\n---LA PERSONA EXISTE Y ESTA EN LA PERSONAS AUTORIZADAS POR LO QUE PUEDE INGRESAR AL AREA---");
+                Console.WriteLine($"\n---LA PERSONA EXISTE, ESTA EN LA PERSONAS AUTORIZADAS Y SU PERMISO NO ESTA VENCIDO POR LO QUE PUEDE INGRESAR AL AREA---");
             }
-            else Console.WriteLine("\n---LA PERSONA NO EXISTE O NO ESTA EN LAS PERSONAS AUTORIZADAS POR LO QUE NO PUEDE INGRESAR AL AREA--- ");
+            if (ban==0) Console.WriteLine("\n---LA PERSONA NO EXISTE O NO ESTA EN LAS PERSONAS AUTORIZADAS POR LO QUE NO PUEDE INGRESAR AL AREA--- ");
+            if (ban == 1 && ban2 != 1)
+            {
+                Console.WriteLine($"\n---LA PERSONA EXISTE, ESTA EN LA PERSONAS AUTORIZADAS PERO SU PERMISO ESTA VENCIDO POR LO QUE NO PUEDE INGRESAR AL AREA---");
+            }
         }
+
     }
 }
