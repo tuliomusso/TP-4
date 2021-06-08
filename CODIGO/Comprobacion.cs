@@ -66,6 +66,38 @@ namespace TP_4
                 Console.WriteLine($"\n---LA PERSONA EXISTE, ESTA EN LA PERSONAS AUTORIZADAS PERO SU PERMISO ESTA VENCIDO POR LO QUE NO PUEDE INGRESAR AL AREA---");
             }
         }
+        public static void bajaEmpleado()
+        {
+            string ingresoDNI;
+            
+            Console.WriteLine("\nDesea dar de baja a un empleado?\n1-Si\n2-No");
+            int opcion = int.Parse(Console.ReadLine());
+            while (opcion == 1) 
+            {
+                Console.WriteLine("\nIngrese el DNI del empleado que desea dar de baja:");
+                ingresoDNI = Console.ReadLine();
+
+                foreach (var emp in CreacionListas.listaPersonas)
+                {
+                    if (ingresoDNI == emp.dni)
+                    {
+                        Console.WriteLine($"\nSe dio de baja al empleado {emp.nombreApellido}---DNI:{emp.dni} ");
+                    }
+
+                    if (ingresoDNI != emp.dni)
+                    {
+                        CreacionListas.listaPersonasActualizada.Add(emp);
+                    }
+                }
+                Console.WriteLine("\nDesea dar de baja a un empleado?\n1-Si\n2-No");
+                opcion = int.Parse(Console.ReadLine());
+            }
+            Console.WriteLine("\nLISTA ACTUALIZADA DESPUES DE BAJA DE EMPLEADOS");
+            foreach (var borrar2 in CreacionListas.listaPersonasActualizada)
+            {
+                Console.WriteLine(borrar2.nombreApellido);
+            }
+        }
 
     }
 }
