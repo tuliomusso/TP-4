@@ -16,6 +16,8 @@ namespace TP_4
        public static List<Persona>  personasAutorizadas = new List<Persona>();
 
        public static List<Persona> listaPersonasActualizada = new List<Persona>();
+
+        public static List<Persona> personasConFiebre = new List<Persona>();
     }
 
 }
