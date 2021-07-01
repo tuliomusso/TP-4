@@ -16,6 +16,15 @@ namespace TP_4
                 Console.WriteLine($"NombreApellido:{a.nombreApellido}\nDNI {a.dni}");
             }
         }
-  
+        public static void MostrarPersonasCFiebre()
+        {
+            Comprobacion.personasConFiebre();
+            Console.WriteLine("\nLISTA PERSONAS CON FIEBRE");
+            foreach (var f in CreacionListas.personasConFiebre.Distinct())
+            {
+                Console.WriteLine(f.nombreApellido);
+            }
+        }
+     
     }
 }

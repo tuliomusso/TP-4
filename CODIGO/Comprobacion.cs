@@ -95,21 +95,61 @@ namespace TP_4
                 {
                     if (ingresoDNI == emp.dni)
                     {
-                        Console.WriteLine($"\nSe dio de baja al empleado {emp.nombreApellido}---DNI:{emp.dni} ");
-                    }
-
-                    if (ingresoDNI != emp.dni)
-                    {
                         CreacionListas.listaPersonasActualizada.Add(emp);
+                        Console.WriteLine($"\nSe dio de baja al empleado {emp.nombreApellido}---DNI:{emp.dni} ");
                     }
                 }
                 Console.WriteLine("\nDesea dar de baja a Otro empleado?\n1-Si\n2-No");
                 opcion = int.Parse(Console.ReadLine());
             }
-            Console.WriteLine("\nLISTA ACTUALIZADA DESPUES DE BAJA DE EMPLEADOS");
+            Console.WriteLine("\nLISTA DE EMPLEADOS DADOS DE BAJA");
             foreach (var borrar2 in CreacionListas.listaPersonasActualizada)
             {
                 Console.WriteLine(borrar2.nombreApellido);
+            }
+        }
+        public static void personasConFiebre()
+        {
+            foreach (var fiebre in CreacionListas.personasAutorizadas)
+            {
+                if (fiebre.temperatura>37)
+                {
+                    CreacionListas.personasConFiebre.Add(fiebre);
+                }
+            }
+            
+        }
+        public static DateTime RegistrarSalida()
+        {
+            string ingresoDNI;
+            string empleado="";
+            DateTime hora=DateTime.Now;
+            Console.WriteLine("\nIngrese el DNI del empleado que quiere retirarse del establecimiento:");
+            ingresoDNI = Console.ReadLine();
+            foreach (var emp in CreacionListas.personasAutorizadas)
+            {
+                 if (ingresoDNI==emp.dni)
+                 {
+                    hora =emp.horaSalida = DateTime.Now;
+                     empleado=emp.nombreApellido;
+                 }
+            
+               
+            }
+            Console.WriteLine("\nRegistro Exitoso");
+            return hora;
+        }
+
+        public static void VerSalidas()
+        {
+            //VA A MOSTRAR SOLO SI PREVIAMENTE SE REGISTRO LA SALIDA
+            foreach (var item in CreacionListas.personasAutorizadas)
+            {
+                if (item.horaSalida != default(DateTime))
+                {
+                    Console.WriteLine($"\nEl empleado {item.nombreApellido} se retiro a las {item.horaSalida}");
+                }
+
             }
         }
 

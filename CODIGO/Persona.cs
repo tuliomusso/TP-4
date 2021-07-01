@@ -20,7 +20,8 @@ namespace TP_4
         public double temperatura { get; set; }
         public string patente { get; set; }
         public string destino { get; set; }
-        public Persona(string dni, string nombreApellido, string domicilio,string telefono,string email,Actividad actividadQueRealiza, Empresa nombreEmpresa, DateTime fechaVencimientoPermiso, DateTime fechaHoraIngreso, double temperatura, string patente, string destino)
+        public DateTime horaSalida { get; set; }
+        public Persona(string dni, string nombreApellido, string domicilio,string telefono,string email,Actividad actividadQueRealiza, Empresa nombreEmpresa, DateTime fechaVencimientoPermiso, DateTime fechaHoraIngreso, double temperatura, string patente, string destino, DateTime horaSalida)
         {
             this.dni = dni;
             this.nombreApellido = nombreApellido;
@@ -34,6 +35,7 @@ namespace TP_4
             this.temperatura = temperatura;
             this.patente = patente;
             this.destino = destino;
+            this.horaSalida = horaSalida;
         }
     }
 }
