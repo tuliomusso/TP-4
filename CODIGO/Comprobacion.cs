@@ -8,8 +8,6 @@ namespace TP_4
 {
     class Comprobacion
     {
-
-   
         public static void comprobacion()
         {
             foreach (var a in CreacionListas.listaPersonas)
@@ -91,21 +89,33 @@ namespace TP_4
                 Console.WriteLine("\nIngrese el DNI del empleado que desea dar de baja:");
                 ingresoDNI = Console.ReadLine();
 
-                foreach (var emp in CreacionListas.listaPersonas)
+                foreach (var emp in CreacionListas.personasAutorizadas)
                 {
                     if (ingresoDNI == emp.dni)
                     {
-                        CreacionListas.listaPersonasActualizada.Add(emp);
-                        Console.WriteLine($"\nSe dio de baja al empleado {emp.nombreApellido}---DNI:{emp.dni} ");
+                        emp.situacionActual = false;
                     }
                 }
                 Console.WriteLine("\nDesea dar de baja a Otro empleado?\n1-Si\n2-No");
                 opcion = int.Parse(Console.ReadLine());
             }
             Console.WriteLine("\nLISTA DE EMPLEADOS DADOS DE BAJA");
-            foreach (var borrar2 in CreacionListas.listaPersonasActualizada)
+            foreach (var borrar2 in CreacionListas.personasAutorizadas)
             {
-                Console.WriteLine(borrar2.nombreApellido);
+                if (borrar2.situacionActual==false)
+                {
+                    Console.WriteLine(borrar2.nombreApellido);
+                }
+                
+            }
+            Console.WriteLine("\nLISTA DE EMPLEADOS ACTIVOS");
+            foreach (var borrar3 in CreacionListas.personasAutorizadas)
+            {
+                if (borrar3.situacionActual == true)
+                {
+                    Console.WriteLine(borrar3.nombreApellido);
+                }
+
             }
         }
         public static void personasConFiebre()
@@ -142,7 +152,7 @@ namespace TP_4
 
         public static void VerSalidas()
         {
-            //VA A MOSTRAR SOLO SI PREVIAMENTE SE REGISTRO LA SALIDA
+            //VA A MOSTRAR LA SALIDA SOLO SI PREVIAMENTE FUE REGISTRADA
             foreach (var item in CreacionListas.personasAutorizadas)
             {
                 if (item.horaSalida != default(DateTime))

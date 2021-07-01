@@ -21,7 +21,9 @@ namespace TP_4
         public string patente { get; set; }
         public string destino { get; set; }
         public DateTime horaSalida { get; set; }
-        public Persona(string dni, string nombreApellido, string domicilio,string telefono,string email,Actividad actividadQueRealiza, Empresa nombreEmpresa, DateTime fechaVencimientoPermiso, DateTime fechaHoraIngreso, double temperatura, string patente, string destino, DateTime horaSalida)
+        public bool situacionActual { get; set; } //refeleja si esta dado de baja o no
+                                                  // true significa que esta activo
+        public Persona(string dni, string nombreApellido, string domicilio,string telefono,string email,Actividad actividadQueRealiza, Empresa nombreEmpresa, DateTime fechaVencimientoPermiso, DateTime fechaHoraIngreso, double temperatura, string patente, string destino, DateTime horaSalida, bool situacionActual)
         {
             this.dni = dni;
             this.nombreApellido = nombreApellido;
@@ -36,6 +38,7 @@ namespace TP_4
             this.patente = patente;
             this.destino = destino;
             this.horaSalida = horaSalida;
+            this.situacionActual = situacionActual;
         }
     }
 }
