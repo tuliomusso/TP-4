@@ -1,5 +1,8 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -161,6 +164,29 @@ namespace TP_4
                 }
 
             }
+        }
+        public static void generaQR() //INCLUYE LECTURA
+        {
+            string ingresoDNI;
+            Console.WriteLine("\nINGRESE EL DNI DEL EMPLEADO AL CUAL LE QUIERE GENERAR QR:");
+            ingresoDNI = Console.ReadLine();
+            foreach (var item in CreacionListas.personasAutorizadas)
+            {
+                if (item.dni == ingresoDNI)
+                {
+                    Document doc = new Document(PageSize.A4);
+                    PdfWriter.GetInstance(doc, new FileStream($@"C:\Users\tulio\Desktop\DISEÑO DE SISTEMAS\01 TRABAJOS PRACTICOS\04 TP-4\TP_4\QR\QR{item.nombreApellido}.pdf", FileMode.Create));
+                    doc.Open();
+                    BarcodeQRCode codigoQR = new BarcodeQRCode(item.nombreApellido, 1000, 1000, null);
+                    Image codeQRImage = codigoQR.GetImage();
+                    codeQRImage.ScaleAbsolute(200, 200);
+                    doc.Add(codeQRImage);
+                    doc.Close();
+                    Console.WriteLine($"\nEl QR del empleado {item.nombreApellido} se genero en la carpeta QR del proyecto");
+                }
+               
+            }
+            
         }
 
     }

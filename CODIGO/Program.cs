@@ -37,7 +37,7 @@ namespace TP_4
             {
                 Console.WriteLine("\nINGRESE LA OPCION DESEADA:\n1-Mostrar Personas Autorizadas Antes de Verficar DNI\n" +
                "2-Verificar Autorizacion de Ingreso\n3-Dar de Baja un Empleado\n4-Lista Personas con Fiebre\n5-Registrar Salida de Empleado" +
-               "\n6-Ver salidas de empleados");
+               "\n6-Ver salidas de empleados\n7-Generar QR de empleado");
                 int opcion = int.Parse(Console.ReadLine());
                 switch (opcion)
                 {
@@ -47,6 +47,7 @@ namespace TP_4
                     case 4: Mostrar.MostrarPersonasCFiebre();break;
                     case 5: Comprobacion.RegistrarSalida();break;
                     case 6: Comprobacion.VerSalidas();break; //VA A MOSTRAR LA SALIDA SOLO SI PREVIAMENTE FUE REGISTRADA
+                    case 7: Comprobacion.generaQR();break; //INCLUYE LECTURA
                     default: Console.WriteLine("\nOPCION INCORRECTA"); break;
                 }
                 Console.WriteLine("\nDESEA REALIZAR OTRA OPERACION?\n1-SI\n2-NO");
