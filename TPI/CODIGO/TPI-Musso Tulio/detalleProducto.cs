@@ -8,15 +8,21 @@ namespace TPI_Musso_Tulio
 {
     public class detalleProducto
     {
-        public double descuento { get; set; }
+        public string nombreCombo { get; set; }
         public int codigoCombo { get; set; }
-        public Producto codigoComponente { get; set; }
+        public List<Producto> descripcionComponentes { get; set; }
+        public decimal precioUnitario { get; set; }
+        public decimal descuento { get; set; }
+        public bool disponibilidad { get; set; }
 
-        public detalleProducto(double descuento, int codigoCombo, Producto codigoComponente)
+        public detalleProducto(int codigoCombo,string nombreCombo, List<Producto> descripcionComponentes, decimal descuento, decimal precioUnitario, bool disponibilidad)
         {
-            this.descuento = descuento;
+            this.nombreCombo = nombreCombo;
             this.codigoCombo = codigoCombo;
-            this.codigoComponente = codigoComponente;
+            this.descripcionComponentes = descripcionComponentes;
+            this.precioUnitario = precioUnitario;
+            this.descuento = descuento;
+            this.disponibilidad = disponibilidad;
         }
     }
 }

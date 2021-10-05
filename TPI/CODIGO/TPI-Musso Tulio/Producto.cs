@@ -8,12 +8,12 @@ namespace TPI_Musso_Tulio
 {
     public class Producto
     {
-        public int codigoProducto { get; set; } //codigo del proveedor 
+        public int codigoProducto { get; set; } 
         public string nombre { get; set; }
         public DateTime fechaIngreso { get; set; }
         public bool dadoDeBaja { get; set; }
         public string descripcion { get; set; }
-        public string modelo { get; set; }// XT12233
+        public string modelo { get; set; }// ej XF12233
         public string color { get; set; }
         public double tamaño { get; set; }
         public decimal precioUnitario { get; set; }

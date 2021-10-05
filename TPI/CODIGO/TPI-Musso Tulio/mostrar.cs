@@ -14,7 +14,20 @@ namespace TPI_Musso_Tulio
             {
                 Console.WriteLine($"\nCodigo del producto:{producto.codigoProducto}\nNombre del Producto:{producto.nombre}\nFecha de ingreso:{producto.fechaIngreso.ToShortDateString()}\n" +
                     $"Descripcion:{producto.descripcion}\nModelo:{producto.modelo}\nColor:{producto.color}\nTamaño:{producto.tamaño}\nPrecio Unitario:{producto.precioUnitario}\n" +
-                    $"Cantidad Actual:{producto.cantidadActual}\nCategoria:{producto.categoria}\n");
+                    $"Cantidad Actual:{producto.cantidadActual}\nCategoria:{producto.categoria}\nDisponibilidad:{producto.disponible}\nEstado de Baja:{producto.dadoDeBaja}");
+            }
+        }
+
+        public static void combosRegistrados()
+        {
+            foreach (var combo in creacionListas.listaCombos)
+            {
+                Console.WriteLine($"\nCodigo del combo:{combo.codigoCombo}\nNombre del Combo:{combo.nombreCombo}\nDescripcion del combo:");
+                foreach (var componentes in creacionListas.descripcionCombo)
+                {
+                    Console.WriteLine($"\n{componentes.nombre}");
+                }
+                Console.WriteLine($"\nDescuento aplicado:{combo.descuento}\nPrecio unitario:{combo.precioUnitario}\nDisponibilidad:{combo.disponibilidad}");
             }
         }
     }
