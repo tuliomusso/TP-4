@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
 namespace TPI_Musso_Tulio
 {
     class mostrar
@@ -23,10 +23,7 @@ namespace TPI_Musso_Tulio
             foreach (var combo in creacionListas.listaCombos)
             {
                 Console.WriteLine($"\nCodigo del combo:{combo.codigoCombo}\nNombre del Combo:{combo.nombreCombo}\nDescripcion del combo:");
-                foreach (var componentes in creacionListas.descripcionCombo)
-                {
-                    Console.WriteLine($"\n{componentes.nombre}");
-                }
+                Console.WriteLine($"\n{combo.descripcionComponentes}");
                 Console.WriteLine($"\nDescuento aplicado:{combo.descuento}\nPrecio unitario:{combo.precioUnitario}\nDisponibilidad:{combo.disponibilidad}");
             }
         }

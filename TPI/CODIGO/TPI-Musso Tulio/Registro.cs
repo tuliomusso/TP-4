@@ -25,7 +25,7 @@ namespace TPI_Musso_Tulio
             Console.WriteLine("\nIngrese el color del producto");
             string color = Console.ReadLine();
             Console.WriteLine("\nIngrese el tamaño del producto");
-            double tamaño = double.Parse(Console.ReadLine());
+            string tamaño = Console.ReadLine();
             Console.WriteLine("\nIngrese el Precio unitario del producto");
             decimal precioUnitario = decimal.Parse(Console.ReadLine());
             Console.WriteLine("\nIngrese la cantidad de unidades del producto");
@@ -41,13 +41,15 @@ namespace TPI_Musso_Tulio
                 productoDadoDeBaja = true;
             }
             //***COMPLETAR CATEGORIAS***
-            Console.WriteLine("\nIngrese la categoria del producto:\n1-CATEGORIA 1"); // falta determinar categorias y armar el switch
-            int categoria = int.Parse(Console.ReadLine());
+            Console.WriteLine("\nIngrese la categoria del producto:"); 
+            string categoria = Console.ReadLine();
             Producto productoNuevo = new Producto(codigoProducto,nombreProducto,fechaDeIngreso,descripcion,modelo,color,tamaño,precioUnitario,cantidadActual,disponibilidad,categoria,productoDadoDeBaja);
             creacionListas.listaProductos.Add(productoNuevo);
         }
         public static void registrarCombo()
         {
+            creacionListas.descripcionComponentes.Clear();
+            creacionListas.descripcionCombo.Clear();
             int bandera = 0;
             int opcion = 1;
             decimal importe = 0;
@@ -92,7 +94,7 @@ namespace TPI_Musso_Tulio
             Console.WriteLine("\nIngrese el descuento que tendra el combo(ej 1%=0,01):");
             decimal descuento = decimal.Parse(Console.ReadLine());
             //Calculo del importe total del combo con el descuento aplicado
-            foreach (var componentes in creacionListas.descripcionComponentes)
+            foreach (var componentes in creacionListas.descripcionCombo)
             {
                 suma = suma + componentes.precioUnitario;
             }
@@ -103,8 +105,12 @@ namespace TPI_Musso_Tulio
             {
                 disponibilidad = true;
             }
-
-            detalleProducto comboNuevo = new detalleProducto(codigoCombo,nombreCombo,creacionListas.descripcionCombo,descuento,importe,disponibilidad);
+            string descripcion=""; 
+            foreach (var combo in creacionListas.descripcionCombo)
+            {
+                descripcion = $"{descripcion}{combo.nombre},";
+            }
+            detalleProducto comboNuevo = new detalleProducto(codigoCombo,nombreCombo,descripcion,descuento,importe,disponibilidad,cantidadActual);
             creacionListas.listaCombos.Add(comboNuevo);
         }
 

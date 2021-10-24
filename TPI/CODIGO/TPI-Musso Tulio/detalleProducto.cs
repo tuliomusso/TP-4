@@ -10,12 +10,13 @@ namespace TPI_Musso_Tulio
     {
         public string nombreCombo { get; set; }
         public int codigoCombo { get; set; }
-        public List<Producto> descripcionComponentes { get; set; }
+        public string descripcionComponentes { get; set; }
         public decimal precioUnitario { get; set; }
         public decimal descuento { get; set; }
         public bool disponibilidad { get; set; }
+        public int cantidadActual { get; set; }
 
-        public detalleProducto(int codigoCombo,string nombreCombo, List<Producto> descripcionComponentes, decimal descuento, decimal precioUnitario, bool disponibilidad)
+        public detalleProducto(int codigoCombo,string nombreCombo, string descripcionComponentes, decimal descuento, decimal precioUnitario, bool disponibilidad, int cantidadActual)
         {
             this.nombreCombo = nombreCombo;
             this.codigoCombo = codigoCombo;
@@ -23,6 +24,7 @@ namespace TPI_Musso_Tulio
             this.precioUnitario = precioUnitario;
             this.descuento = descuento;
             this.disponibilidad = disponibilidad;
+            this.cantidadActual = cantidadActual;
         }
     }
 }
