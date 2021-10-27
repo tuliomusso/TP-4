@@ -17,7 +17,7 @@ namespace TPI_Musso_Tulio
         public string tamaño { get; set; }  
         public decimal precioUnitario { get; set; }
         public int cantidadActual { get; set; }
-        public string categoria { get; set; } // menu de categorias
+        public string categoria { get; set; } 
         public bool disponible { get; set; }
         public bool dadoDeBaja { get; set; }
   

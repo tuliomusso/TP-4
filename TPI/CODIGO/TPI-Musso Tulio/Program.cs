@@ -27,6 +27,12 @@ namespace TPI_Musso_Tulio
                 }
                 Console.WriteLine("\nDESEA REALIZAR OTRA OPERACION?\n1-SI\n2-NO");
                 opcionContinuar = int.Parse(Console.ReadLine());
+                while (opcionContinuar < 1 || opcionContinuar > 2)
+                {
+                    Console.WriteLine("\nOPCION INCORRECTA");
+                    Console.WriteLine("\nDESEA REALIZAR OTRA OPERACION?\n1-SI\n2-NO");
+                    opcionContinuar = int.Parse(Console.ReadLine());
+                }
                 Console.Clear();
             } while (opcionContinuar == 1);
             string json = JsonConvert.SerializeObject(creacionListas.listaProductos);
