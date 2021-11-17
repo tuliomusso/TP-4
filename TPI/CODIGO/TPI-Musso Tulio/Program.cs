@@ -11,7 +11,7 @@ namespace TPI_Musso_Tulio
             int opcionContinuar;
             do
             {
-                Console.WriteLine("\nINGRESE LA OPCION DESEADA:\n1-Registrar Producto\n2-Mostrar productos registrados\n3-Registar combo\n4-Mostrar combos registrados\n5-Actualizar stock\n6-Registrar baja\n7-DTO Crear Json para los teams");
+                Console.WriteLine("\nINGRESE LA OPCION DESEADA:\n1-Registrar Producto\n2-Mostrar productos registrados\n3-Registar combo\n4-Mostrar combos registrados\n5-Actualizar stock\n6-Registrar baja\n7-DTO Crear Json para los teams\n8-Salir");
                 int opcion = int.Parse(Console.ReadLine());
                 Console.Clear();
                 switch (opcion)
@@ -22,7 +22,29 @@ namespace TPI_Musso_Tulio
                     case 4: mostrar.combosRegistrados();break;
                     case 5: Registro.actualizarStock();break;
                     case 6: Registro.registrarBaja();break;
-                    case 7: JsonTeamDos.DTOprepararJson(); JsonTeamTres.DTOprepararJson(); JsonTeamCinco.DTOprepararJson(); break;
+                    case 7:
+                        if (creacionListas.listaProductos.Count == 0)
+                        {
+                            Console.WriteLine("\nTodavia no se registraron Productos");
+                            if (creacionListas.listaCombos.Count == 0)
+                            {
+                                Console.WriteLine("\nTodavia no se registraron Combos");
+                            }
+                        }
+                        else
+                        {
+                            if (creacionListas.listaCombos.Count == 0)
+                            {
+                                Console.WriteLine("\nTodavia no se registraron Combos");
+                            }
+                            else
+                            {
+                                JsonTeamDos.DTOprepararJson(); JsonTeamTres.DTOprepararJson(); JsonTeamCinco.DTOprepararJson();
+                                Console.WriteLine("\nSe crearon con exito los archivos Json");
+                            }
+                        }
+                        break;
+                    case 8: return;
                     default: Console.WriteLine("\nOPCION INCORRECTA"); break;
                 }
                 Console.WriteLine("\nDESEA REALIZAR OTRA OPERACION?\n1-SI\n2-NO");

@@ -47,13 +47,21 @@ namespace TPI_Musso_Tulio
             Console.WriteLine("\nIngrese el tamaño del producto");
             string tamaño = Console.ReadLine();
             Console.WriteLine("\nIngrese el Precio unitario del producto");
-            decimal precioUnitario = decimal.Parse(Console.ReadLine());
+            decimal precioUnitario;
+            String ResultPrecio = Console.ReadLine();
+            while (!decimal.TryParse(ResultPrecio, out precioUnitario))
+            {
+                Console.WriteLine("\nIngreso no valido");
+                Console.WriteLine("\nIngrese el Precio unitario del producto");
+                ResultPrecio = Console.ReadLine();
+            }
             while (precioUnitario<0)
             {
                 Console.WriteLine("\nPrecio No valido");
                 Console.WriteLine("\nIngrese el Precio unitario del producto");
                 precioUnitario = decimal.Parse(Console.ReadLine());
             }
+
             int cantidadActual;
             Console.WriteLine("\nIngrese la cantidad de unidades del producto");
             String ResultCant = Console.ReadLine();
@@ -82,10 +90,110 @@ namespace TPI_Musso_Tulio
                 disponibilidad = false;
                 productoDadoDeBaja = true;
             }
-            //***COMPLETAR CATEGORIAS***
             Console.WriteLine("\nIngrese la categoria del producto:"); 
             string categoria = Console.ReadLine();
-            Producto productoNuevo = new Producto(codigoProducto,nombreProducto,fechaDeIngreso,descripcion,modelo,color,tamaño,precioUnitario,cantidadActual,disponibilidad,categoria,productoDadoDeBaja);
+            //PRECIOS CON DESCUENTO
+            decimal precioEntreDosYCincoUnidades = precioUnitario - (precioUnitario * 0.03M);
+            decimal precioEntreSeisYDiezUnidades = precioUnitario - (precioUnitario * 0.05M);
+            decimal precioMasDeDiezUnidades = precioUnitario - (precioUnitario * 0.07M);
+            //OFERTA
+            DateTime fechaInicioA = new DateTime(2021, 10, 30);
+            DateTime fechaInicioB = new DateTime(2021, 10, 30);
+            DateTime fechaInicioC = new DateTime(2021, 10, 30);
+            DateTime fechaCierreA = new DateTime(2021, 12, 20);
+            DateTime fechaCierreB = new DateTime(2021, 12, 20);
+            DateTime fechaCierreC = new DateTime(2021, 12, 20);
+            Oferta ofertaA = new Oferta("OFERTA DIA DE LA MADRE 10% DESCUENTO",fechaInicioA,fechaCierreA);
+            Oferta ofertaB = new Oferta("OFERTA DIA DEL PADRE 10% DESCUENTO", fechaInicioB,fechaCierreB);
+            Oferta ofertaC = new Oferta("OFERTA DIA DE LA TRADICION 10% DESCUENTO", fechaInicioC,fechaCierreC);
+            
+            string descripcionOferta="";
+            DateTime? fechaInicioOferta = null;
+            DateTime? fechaCierreOferta=null;
+            decimal? PrecioEnOferta=0;
+            bool estaEnOferta=true;
+            Console.WriteLine("\nDesea registrar este producto en una oferta?\n1-SI\n2-NO");
+            int respuestaOferta = int.Parse(Console.ReadLine());
+            if (respuestaOferta == 1)
+            {
+                Console.WriteLine("\nIngrese la oferta que desea aplicar:\n1-OFERTA DIA DE LA MADRE\n2-OFERTA DIA DEL PADRE\n3-OFERTA DIA DE LA TRADICION");
+                int eleccion = int.Parse(Console.ReadLine());
+                while (eleccion < 1 || eleccion > 3)
+                {
+                    Console.WriteLine("\nOpcion incorrecta");
+                    Console.WriteLine("\nIngrese la oferta que desea aplicar:\n1-OFERTA DIA DE LA MADRE\n2-OFERTA DIA DEL PADRE\n3-OFERTA DIA DE LA TRADICION");
+                    eleccion = int.Parse(Console.ReadLine());
+                }
+                    switch (eleccion)
+                {
+                    case 1:
+                        descripcionOferta = ofertaA.descripcionOferta;
+                        if (ofertaA.InicioOferta < DateTime.Now && ofertaA.CierreOferta> DateTime.Now)
+                        {
+                            fechaInicioOferta = ofertaA.InicioOferta;
+                            fechaCierreOferta = ofertaA.CierreOferta;
+                            PrecioEnOferta = precioUnitario - (precioUnitario * 0.10M);
+                            estaEnOferta = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nLa oferta ya no se encuentra disponible");
+                            descripcionOferta = null;
+                            fechaInicioOferta = null;
+                            fechaCierreOferta = null;
+                            PrecioEnOferta = null;
+                            estaEnOferta = false;
+                        }
+                        break;
+                    case 2:
+                        descripcionOferta = ofertaB.descripcionOferta;
+                        if (ofertaB.InicioOferta < DateTime.Now && ofertaB.CierreOferta > DateTime.Now)
+                        {
+                            fechaInicioOferta = ofertaB.InicioOferta;
+                            fechaCierreOferta = ofertaB.CierreOferta;
+                            PrecioEnOferta = precioUnitario - (precioUnitario * 0.10M);
+                            estaEnOferta = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nLa oferta ya no se encuentra disponible");
+                            descripcionOferta = null;
+                            fechaInicioOferta = null;
+                            fechaCierreOferta = null;
+                            PrecioEnOferta = null;
+                            estaEnOferta = false;
+                        }
+                        break;
+                    case 3:
+                        descripcionOferta = ofertaC.descripcionOferta;
+                        if (ofertaC.InicioOferta < DateTime.Now && ofertaC.CierreOferta > DateTime.Now)
+                        {
+                            fechaInicioOferta = ofertaC.InicioOferta;
+                            fechaCierreOferta = ofertaC.CierreOferta;
+                            PrecioEnOferta = precioUnitario - (precioUnitario * 0.10M);
+                            estaEnOferta = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nLa oferta ya no se encuentra disponible");
+                            descripcionOferta = null;
+                            fechaInicioOferta = null;
+                            fechaCierreOferta = null;
+                            PrecioEnOferta = null;
+                            estaEnOferta = false;
+                        }
+                        break;
+                    default: Console.WriteLine("\nOPCION INCORRECTA"); break;
+                }
+            }
+            else
+            {
+                descripcionOferta = "NO SE ENCUENTRA EN OFERTA";
+                fechaCierreOferta = null;
+                PrecioEnOferta = null;
+                estaEnOferta = false;
+            }
+            Producto productoNuevo = new Producto(codigoProducto,nombreProducto,fechaDeIngreso,descripcion,modelo,color,tamaño,precioUnitario,cantidadActual,disponibilidad,categoria,productoDadoDeBaja,precioEntreDosYCincoUnidades,precioEntreSeisYDiezUnidades,precioMasDeDiezUnidades,estaEnOferta,descripcionOferta,PrecioEnOferta,fechaInicioOferta,fechaCierreOferta);
             creacionListas.listaProductos.Add(productoNuevo);
         }
         public static void registrarCombo()
@@ -99,7 +207,6 @@ namespace TPI_Musso_Tulio
             int cantidadActual = 0;
             int confirmacion;
             Console.WriteLine("\nIngrese el codigo del Combo");
-            //int codigoCombo = int.Parse(Console.ReadLine());
             int codigoCombo;
             String ResultCombo = Console.ReadLine();
             while (!Int32.TryParse(ResultCombo, out codigoCombo))
@@ -190,9 +297,16 @@ namespace TPI_Musso_Tulio
             do
             {
                 Console.WriteLine("\nIngrese el codigo del producto al cual desea actualizar stock:");
-                codigoABuscar = int.Parse(Console.ReadLine());
+                String ResultCodigoABuscar = Console.ReadLine();
+                while (!Int32.TryParse(ResultCodigoABuscar, out codigoABuscar))
+                {
+                    Console.WriteLine("\nIngreso no valido");
+                    Console.WriteLine("\nIngrese el codigo del producto al cual desea actualizar stock:");
+                    ResultCodigoABuscar = Console.ReadLine();
+                }
                 foreach (var prod in creacionListas.listaProductos)
                 {
+                    bandera = 0;
                     if (prod.codigoProducto == codigoABuscar)
                     {
                         Console.WriteLine("\nIngrese la cantidad de unidades que desea añadir al stock:");
@@ -257,7 +371,14 @@ namespace TPI_Musso_Tulio
             {
                 bandera = 0;
                 Console.WriteLine("\nIngrese el codigo del producto al cual desea dar de baja:");
-                int codigoABuscar = int.Parse(Console.ReadLine());
+                int codigoABuscar;
+                String ResultCodigoABuscar = Console.ReadLine();
+                while (!Int32.TryParse(ResultCodigoABuscar, out codigoABuscar))
+                {
+                    Console.WriteLine("\nIngreso no valido");
+                    Console.WriteLine("\nIngrese el codigo del producto al cual desea actualizar stock:");
+                    ResultCodigoABuscar = Console.ReadLine();
+                }
                 foreach (var producto in creacionListas.listaProductos)
                 {
                     if (codigoABuscar == producto.codigoProducto)

@@ -19,8 +19,10 @@ namespace TPI_Musso_Tulio
                 foreach (var producto in creacionListas.listaProductos)
                 {
                     Console.WriteLine($"\nCodigo del producto:{producto.codigoProducto}\nNombre del Producto:{producto.nombre}\nFecha de ingreso:{producto.fechaIngreso.ToShortDateString()}\n" +
-                        $"Descripcion:{producto.descripcion}\nModelo:{producto.modelo}\nColor:{producto.color}\nTamaño:{producto.tamaño}\nPrecio Unitario:{producto.precioUnitario}\n" +
-                        $"Cantidad Actual:{producto.cantidadActual}\nCategoria:{producto.categoria}\nDisponibilidad:{producto.disponible}\nEstado de Baja:{producto.dadoDeBaja}");
+                        $"Descripcion:{producto.descripcion}\nModelo:{producto.modelo}\nColor:{producto.color}\nTamaño:{producto.tamaño}\nPrecio Unitario:{producto.precioUnitario}\nPrecio con descuento entre 2 y 5 unidades:{producto.precioEntreDosYCincoUnidades}\n" +
+                        $"Precio con descuento entre 6 y 10 unidades:{producto.precioEntreSeisYDiezUnidades}\nPrecio con descuento por mas de 10 unidades:{producto.precioMasDeDiezUnidades}\n" +
+                        $"Cantidad Actual:{producto.cantidadActual}\nCategoria:{producto.categoria}\nDisponibilidad:{producto.disponible}\nEstado de Baja:{producto.dadoDeBaja}\nEsta en oferta:{producto.estaEnOferta}\n" +
+                        $"Descripcion oferta:{producto.descripcionOferta}\nPrecio en oferta:{producto.precioEnOferta}\nFecha de inicio Oferta:{producto.fechaInicioOferta}\nFecha de cierre Oferta:{producto.fechaCierreOferta}");
                 }
             }
             

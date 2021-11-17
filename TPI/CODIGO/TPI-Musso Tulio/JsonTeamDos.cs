@@ -15,23 +15,39 @@ namespace TPI_Musso_Tulio
         public static List<comboTeamDos> ListaCombosJsonTeamDos = new List<comboTeamDos>();
         public class ProductoTeamDos
         {
-            public int CodigoProducto { get; set; }
-            public string NombreProducto { get; set; }
-            public decimal Precio { get; set; }
-            public string Descripcion { get; set; }
-            public string Color { get; set; }
-            public int Stock { get; set; }
-            public string Categoria { get; set; } 
+            public int codProducto { get; set; }
+            public string nomProducto { get; set; }
+            public decimal precio { get; set; }
+            public string desc { get; set; }
+            public string color { get; set; }
+            public int stockProducto { get; set; }
+            public string categoria { get; set; }
+            public decimal? precioDosCinco { get; set; }
+            public decimal? precioSeisDiez { get; set; }
+            public decimal? precioDiezMas { get; set; }
+            public bool estaOferta { get; set; }
+            public string desOferta { get; set; }
+            public decimal? precioOferta { get; set; }
+            public DateTime? fechaInOferta { get; set; }
+            public DateTime? fechaFinOferta { get; set; }
 
-            public ProductoTeamDos(int CodigoProducto, string NombreProducto, decimal Precio, string Descripcion, string Color, int Stock, string Categoria)
+            public ProductoTeamDos(int CodigoProducto, string NombreProducto, decimal Precio, string Descripcion, string Color, int Stock, string Categoria, decimal? precioEntreDosYCincoUnidades, decimal? precioEntreSeisYDiezUnidades, decimal? precioMasDeDiezUnidades, bool estaEnOferta, string descripcionOferta, decimal? precioEnOferta, DateTime? fechaInicioOferta, DateTime? fechaCierreOferta)
             {
-                this.CodigoProducto = CodigoProducto;
-                this.NombreProducto = NombreProducto;
-                this.Precio = Precio;
-                this.Descripcion = Descripcion;
-                this.Color = Color;
-                this.Stock = Stock;
-                this.Categoria = Categoria;
+                this.codProducto = CodigoProducto;
+                this.nomProducto = NombreProducto;
+                this.precio = Precio;
+                this.desc = Descripcion;
+                this.color = Color;
+                this.stockProducto = Stock;
+                this.categoria = Categoria;
+                this.precioDosCinco = precioEntreDosYCincoUnidades;
+                this.precioSeisDiez = precioEntreSeisYDiezUnidades;
+                this.precioDiezMas = precioMasDeDiezUnidades;
+                this.estaOferta = estaEnOferta;
+                this.desOferta = descripcionOferta;
+                this.precioOferta = precioEnOferta;
+                this.fechaInOferta = fechaInicioOferta;
+                this.fechaFinOferta = fechaCierreOferta;
             }
         }
         public class comboTeamDos
@@ -63,7 +79,15 @@ namespace TPI_Musso_Tulio
                 string Color= producto.color;
                 int Stock = producto.cantidadActual;
                 string Categoria = producto.categoria;
-                ProductoTeamDos nuevoProducto = new ProductoTeamDos(CodigoProducto, NombreProducto, Precio, Descripcion, Color, Stock, Categoria);
+                decimal? precioEntreDosYCincoUnidades = producto.precioEntreDosYCincoUnidades;
+                decimal? precioEntreSeisYDiezUnidades = producto.precioEntreSeisYDiezUnidades;
+                decimal? precioMasDeDiezUnidades = producto.precioMasDeDiezUnidades;
+                bool estaEnOferta = producto.estaEnOferta;
+                string descripcionOferta = producto.descripcionOferta;
+                decimal? precioEnOferta = producto.precioEnOferta;
+                DateTime? fechaInicioOferta = producto.fechaInicioOferta;
+                DateTime? fechaCierreOferta = producto.fechaCierreOferta;
+                ProductoTeamDos nuevoProducto = new ProductoTeamDos(CodigoProducto, NombreProducto, Precio, Descripcion, Color, Stock, Categoria, precioEntreDosYCincoUnidades, precioEntreSeisYDiezUnidades, precioMasDeDiezUnidades, estaEnOferta,descripcionOferta, precioEnOferta, fechaInicioOferta, fechaCierreOferta);
                 ListaJsonTeamDos.Add(nuevoProducto);
             }
             string json = JsonConvert.SerializeObject(ListaJsonTeamDos);
